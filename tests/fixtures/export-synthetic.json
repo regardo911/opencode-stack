@@ -1,0 +1,179 @@
+{
+ "info": {
+  "id": "ses_synth_mon_refactor",
+  "title": "synthetic",
+  "version": "1.19.5"
+ },
+ "messages": [
+  {
+   "info": {
+    "role": "assistant",
+    "agent": "orchestrator",
+    "mode": "orchestrator",
+    "providerID": "opencode-go",
+    "modelID": "kimi-k2.7-code",
+    "cost": 0.0064,
+    "tokens": {
+     "input": 4100,
+     "output": 620,
+     "reasoning": 0,
+     "cache": {
+      "read": 0,
+      "write": 0
+     }
+    },
+    "time": {
+     "created": 1777885260000,
+     "completed": 1777885300000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "user",
+    "agent": "orchestrator",
+    "time": {
+     "created": 1777885259000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "agent": "orchestrator",
+    "mode": "orchestrator",
+    "providerID": "opencode-go",
+    "modelID": "kimi-k2.7-code",
+    "cost": 0.0051,
+    "tokens": {
+     "input": 3900,
+     "output": 410,
+     "reasoning": 0,
+     "cache": {
+      "read": 2800,
+      "write": 0
+     }
+    },
+    "time": {
+     "created": 1777885320000,
+     "completed": 1777885375000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "user",
+    "agent": "orchestrator",
+    "time": {
+     "created": 1777885319000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "agent": "fixer",
+    "mode": "fixer",
+    "providerID": "opencode-go",
+    "modelID": "qwen3.7-plus",
+    "cost": 0.0036,
+    "tokens": {
+     "input": 5200,
+     "output": 900,
+     "reasoning": 0,
+     "cache": {
+      "read": 3000,
+      "write": 0
+     }
+    },
+    "time": {
+     "created": 1777885380000,
+     "completed": 1777885420000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "user",
+    "agent": "fixer",
+    "time": {
+     "created": 1777885379000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "agent": "fixer",
+    "mode": "fixer",
+    "providerID": "opencode-go",
+    "modelID": "qwen3.7-plus",
+    "cost": 0.0039,
+    "tokens": {
+     "input": 6100,
+     "output": 700,
+     "reasoning": 0,
+     "cache": {
+      "read": 4200,
+      "write": 0
+     }
+    },
+    "time": {
+     "created": 1777885440000,
+     "completed": 1777885495000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "user",
+    "agent": "fixer",
+    "time": {
+     "created": 1777885439000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "assistant",
+    "agent": "fixer",
+    "mode": "fixer",
+    "providerID": "opencode-go",
+    "modelID": "qwen3.7-plus",
+    "cost": 0.0031,
+    "tokens": {
+     "input": 4800,
+     "output": 650,
+     "reasoning": 0,
+     "cache": {
+      "read": 3900,
+      "write": 0
+     }
+    },
+    "time": {
+     "created": 1777885500000,
+     "completed": 1777885570000
+    }
+   },
+   "parts": []
+  },
+  {
+   "info": {
+    "role": "user",
+    "agent": "fixer",
+    "time": {
+     "created": 1777885499000
+    }
+   },
+   "parts": []
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+// Chapter 6, Projects #3 and #4: both routing pairs in one file, 4 named agents (the BUILD STEP).
+// Agents, descriptions and permissions are the book's two printed configs. Copy this file to
+// <your project>/opencode.json, then run `opencode debug agent orchestrator` in that project.
+//
+// Two changes from the printed config, both on the "model" lines (BOOK-FIXES.md, chapter 6):
+//  1. Prefix. The book writes opencode/<id>. In opencode's model catalog `opencode` is OpenCode Zen
+//     (billed per request); OpenCode Go is the separate `opencode-go` provider. The Go docs say to
+//     set the model "using the format opencode-go/<model-id>".
+//  2. Model ids. On 2026-11-09 Go's model list no longer had the book's four models. Each line uses
+//     the closest model in the same family that Go listed that day; the book's id is in the comment.
+//     Go changes this list often. Type /models in the TUI to see what your plan serves today, and
+//     change any line to match.
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "orchestrator": {
+      "model": "opencode-go/kimi-k2.7-code", // book: opencode/kimi-k2.6
+      "description": "Plans multi-file refactors and structures the work",
+      "permission": {
+        "bash": "ask",
+        "edit": "ask",
+        "write": "ask"
+      }
+    },
+    "fixer": {
+      "model": "opencode-go/qwen3.7-plus", // book: opencode/qwen3.5-plus
+      "description": "Executes the orchestrator's plan; runs edits fast",
+      "permission": {
+        "bash": "ask",
+        "edit": "allow",
+        "write": "allow"
+      }
+    },
+    "orchestrator-glm": {
+      "model": "opencode-go/glm-5.2", // book: opencode/glm-5
+      "description": "Cheaper orchestrator option; lighter reasoning"
+    },
+    "fixer-deepseek": {
+      "model": "opencode-go/deepseek-v4.1-flash", // book: opencode/deepseek-v4-flash
+      "description": "Speed-king fixer; very fast token throughput"
+    }
+  }
+}

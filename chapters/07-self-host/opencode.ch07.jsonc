@@ -1,0 +1,64 @@
+// Chapter 7: the local fixer from Project #5 (step 3) and the local orchestrator + fixer pair
+// ("Self-Host Variant", and appendix B.2). Merge it into ~/.config/opencode/opencode.json, or
+// copy it to <your project>/opencode.json. Then: ollama serve, ollama pull qwen3.5:9b, opencode --agent local-fixer.
+//
+// Changed from the printed config (BOOK-FIXES.md, chapter 7):
+//  - The provider block. The book puts "baseURL" straight under "ollama". opencode 1.4.3 rejects
+//    that file; 1.19.5 accepts it, drops the key, and then cannot find any ollama model. The working
+//    form names the npm package, puts baseURL under "options", and lists each model you pulled.
+//  - The model tags. qwen3.6-plus, qwen3.5-plus and kimi-k2.6 are not in the Ollama library
+//    (`ollama pull` fails on all three), and the book's appendix says K2.6 has closed weights.
+//    qwen3.5:9b is a 6.6 GB download that fits a 16 GB Mac. qwen3.6:27b is 17.8 GB: the 24 GB tier.
+//
+// A model works only if its tag is under provider.ollama.models AND you pulled it. Check with
+// `ollama list`, and change both places if you pulled something else.
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // Ollama's default port is 11434; /v1 is its OpenAI-compatible API.
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        "qwen3.5:9b": {},
+        "qwen3.6:27b": {}
+      }
+    }
+  },
+
+  "agent": {
+    "local-fixer": {
+      "model": "ollama/qwen3.5:9b", // book: ollama/qwen3.6-plus
+      "description": "Self-hosted fixer; zero outbound API tokens",
+      "permission": {
+        "bash": "ask",
+        "edit": "allow",
+        "write": "allow",
+        "webfetch": "deny"
+      }
+    },
+    "orchestrator-local": {
+      "model": "ollama/qwen3.6:27b", // book: ollama/kimi-k2.6
+      "description": "Self-hosted orchestrator; zero outbound API tokens",
+      "permission": {
+        "bash": "ask",
+        "edit": "ask",
+        "write": "ask",
+        "webfetch": "deny"
+      }
+    },
+    "fixer-local": {
+      "model": "ollama/qwen3.5:9b", // book: ollama/qwen3.5-plus
+      "description": "Self-hosted fixer; zero outbound API tokens",
+      "permission": {
+        "bash": "ask",
+        "edit": "allow",
+        "write": "allow",
+        "webfetch": "deny"
+      }
+    }
+  }
+}

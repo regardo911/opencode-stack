@@ -1,0 +1,26 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.x"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Lint
+        run: |
+          shellcheck chapters/*/*.sh tests/run.sh tests/stub/opencode
+          python -W error -m py_compile chapters/09-cost-dashboard/cost-dash
+      - name: Tests (no key, no network)
+        run: |
+          git config --global user.name ci && git config --global user.email ci@example.com
+          PYTHON=python bash tests/run.sh | tee test.log
+          grep -Eq '^[1-9][0-9]* passed, 0 failed$' test.log
+      - name: cost-dash today on the sample store
+        run: |
+          python -c 'import sqlite3,sys; sqlite3.connect(sys.argv[1]).executescript(open(sys.argv[2]).read())' /tmp/sample.db tests/fixtures/opencode-synthetic.sql
+          chapters/09-cost-dashboard/cost-dash today --opencode-db /tmp/sample.db --db /tmp/sample-cost.db --date 2026-05-06

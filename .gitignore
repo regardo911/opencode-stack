@@ -1,0 +1,9 @@
+.env
+.env.*
+__pycache__/
+*.pyc
+.DS_Store
+cost-log.csv
+*.db
+*.db-shm
+*.db-wal

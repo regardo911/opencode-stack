@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Test stand-in for opencode. No model is called. `run` appends a line to users.ts the way an
+# agent's edit would and records its arguments; every other subcommand exits 0, except
+# `debug rg` with no subcommand, which exits 1 like the real one.
+case "$1 $2 $3" in
+  "run "*) echo "$*" >> "${STUB_LOG:-/dev/null}"; echo "// edit from $(basename "$PWD")" >> users.ts ;;
+  "debug rg ") echo "ripgrep debugging utilities"; exit 1 ;;
+esac
+exit 0
